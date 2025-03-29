@@ -52,7 +52,6 @@
 </head>
 <body>
   <div id="status">Round: 1 | Vaccines Left: 3 | Infectiousness: R=1.20 Fatality=10%</div>
-
   <div id="controls">
     <label for="difficulty">Difficulty:</label>
     <select id="difficulty">
@@ -63,14 +62,7 @@
     <button id="startGameButton">Start Game</button>
     <button id="restartGameButton">Restart</button>
   </div>
-
   <button id="nextRoundButton">Next Round</button>
-
-  <!-- Include Three.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/controls/OrbitControls.js"></script>
-
-  <!-- Your script -->
-  <script src="stop-the-infection.js"></script>
+  <script type="module" src="stop-the-infection.js"></script>
 </body>
 </html>
