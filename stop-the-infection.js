@@ -1,6 +1,5 @@
-import * as THREE from './Js/three.module.js';
-import { OrbitControls } from './Js/OrbitControls.js';
-
+import * as THREE from 'https://cdn.skypack.dev/three@0.150.1';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.150.1/examples/jsm/controls/OrbitControls.js';
 
 let scene, camera, renderer, controls;
 let nodes = [], edges = [], infected = new Set(), dead = new Set(), vaccinated = new Set();
