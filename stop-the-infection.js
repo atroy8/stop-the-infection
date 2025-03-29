@@ -16,6 +16,7 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
+  // Use the global OrbitControls directly
   controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
@@ -287,9 +288,6 @@ function animate() {
   controls.update();
   renderer.render(scene, camera);
 }
-
-init();
-animate();
 
 init();
 animate();
