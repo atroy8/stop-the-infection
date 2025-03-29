@@ -1,28 +1,3 @@
-The error message indicates that `THREE.OrbitControls` is still not being recognized correctly. This issue arises because `OrbitControls` is not directly attached to the `THREE` namespace when included via a script tag. Instead, it is typically available as a global variable.
-
-Let's address the issues step by step:
-
-### 1. **Permissions-Policy Header Warning**
-
-This warning is related to browser policies and does not affect the functionality of your application. It can be ignored unless you are configuring specific security headers.
-
-### 2. **Deprecation Warning for Three.js Scripts**
-
-The warning about the deprecation of `three.min.js` is informational. While it's recommended to use ES Modules in the future, the current setup should still work.
-
-### 3. **OrbitControls is not a constructor**
-
-The `OrbitControls` is not directly attached to the `THREE` namespace. Instead, it is available as a global variable when included via a script tag. You should use it directly without the `THREE` prefix.
-
-### 4. **Audio Files Not Found**
-
-Ensure that the audio files (`success.mp3`, `failure.mp3`, `click.mp3`) are correctly uploaded to your server or repository and that the paths are correct.
-
-### Updated JavaScript Code
-
-Here's the updated JavaScript code with the correct reference to `OrbitControls`:
-
-```javascript
 let scene, camera, renderer, controls;
 let nodes = [], edges = [], infected = new Set(), dead = new Set(), vaccinated = new Set();
 let nodeMeshes = new Map(), lineMeshes = [];
@@ -42,7 +17,7 @@ function init() {
   document.body.appendChild(renderer.domElement);
 
   // Use the global OrbitControls directly
-  controls = new OrbitControls(camera, renderer.domElement);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
   controls.enableZoom = true;
@@ -316,11 +291,3 @@ function animate() {
 
 init();
 animate();
-```
-
-### Additional Steps:
-
-- **Verify Audio Files**: Ensure the audio files are correctly placed in your project directory and accessible via the specified paths.
-- **Test the Application**: Run the application to ensure all functionalities work as expected.
-
-This should resolve the issues you're encountering. If you have further questions or need additional assistance, feel free to ask!
