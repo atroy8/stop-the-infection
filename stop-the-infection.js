@@ -1,5 +1,5 @@
-import * as THREE from './js/three.module.js';
-import { OrbitControls } from './js/OrbitControls.js';
+import * as THREE from './Js/three.module.js';
+import { OrbitControls } from './Js/OrbitControls.js';
 
 
 let scene, camera, renderer, controls;
