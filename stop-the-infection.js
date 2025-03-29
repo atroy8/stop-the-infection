@@ -1,3 +1,9 @@
+// Stop the Infection Game with Difficulty Setting, Start/Restart Controls, 3D Rotation, and Report UI
+// Uses Three.js with OrbitControls for interaction
+
+import * as THREE from 'https://cdn.skypack.dev/three@0.150.1';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.150.1/examples/jsm/controls/OrbitControls.js';
+
 let scene, camera, renderer, controls;
 let nodes = [], edges = [], infected = new Set(), dead = new Set(), vaccinated = new Set();
 let nodeMeshes = new Map(), lineMeshes = [];
@@ -16,8 +22,7 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  // Use the global OrbitControls directly
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
   controls.enableZoom = true;
@@ -26,25 +31,17 @@ function init() {
   light.position.set(50, 50, 50);
   scene.add(light);
 
-  const startGameButton = document.getElementById("startGameButton");
-  if (startGameButton) {
-    startGameButton.addEventListener("click", () => {
-      const difficulty = document.getElementById("difficulty").value;
-      setDifficulty(difficulty);
-      restartGame();
-    });
-  }
+  document.getElementById("startGameButton").addEventListener("click", () => {
+    const difficulty = document.getElementById("difficulty").value;
+    setDifficulty(difficulty);
+    restartGame();
+  });
 
-  const restartGameButton = document.getElementById("restartGameButton");
-  if (restartGameButton) {
-    restartGameButton.addEventListener("click", restartGame);
-  }
+  document.getElementById("restartGameButton").addEventListener("click", () => {
+    restartGame();
+  });
 
-  const nextRoundButton = document.getElementById("nextRoundButton");
-  if (nextRoundButton) {
-    nextRoundButton.addEventListener("click", nextRound);
-  }
-
+  document.getElementById("nextRoundButton").addEventListener("click", nextRound);
   window.addEventListener('click', onMouseClick);
 
   // Automatically show nodes when page loads
@@ -68,20 +65,15 @@ function setDifficulty(level) {
 }
 
 function restartGame() {
-  clearScene();
+  nodeMeshes.forEach(mesh => scene.remove(mesh));
+  lineMeshes.forEach(line => scene.remove(line));
   round = 1;
   vaccinesPerDay = 3;
   createGraph(20);
   drawGraph();
   updateStatus();
-  removeReportCard();
-}
-
-function clearScene() {
-  nodeMeshes.forEach(mesh => scene.remove(mesh));
-  lineMeshes.forEach(line => scene.remove(line));
-  nodeMeshes.clear();
-  lineMeshes = [];
+  const report = document.getElementById("reportCard");
+  if (report) report.remove();
 }
 
 function createGraph(nodeCount) {
@@ -90,6 +82,8 @@ function createGraph(nodeCount) {
   infected.clear();
   dead.clear();
   vaccinated.clear();
+  nodeMeshes.clear();
+  lineMeshes = [];
 
   for (let i = 0; i < nodeCount; i++) {
     let x = (Math.random() - 0.5) * 200;
@@ -102,7 +96,7 @@ function createGraph(nodeCount) {
     const connections = Math.floor(Math.random() * 3) + 1;
     for (let j = 0; j < connections; j++) {
       let target = Math.floor(Math.random() * nodeCount);
-      if (target !== i && !edges.some(e => (e.from === i && e.to === target) || (e.from === target && e.to === i))) {
+      if (target !== i && !edges.find(e => (e.from === i && e.to === target) || (e.from === target && e.to === i))) {
         edges.push({ from: i, to: target });
       }
     }
@@ -252,11 +246,6 @@ function checkGameOver() {
     report.innerHTML = message + '<br><br><button onclick="document.getElementById(\'reportCard\').remove()">Close</button>';
     document.body.appendChild(report);
   }
-}
-
-function removeReportCard() {
-  const report = document.getElementById("reportCard");
-  if (report) report.remove();
 }
 
 function onMouseClick(event) {
