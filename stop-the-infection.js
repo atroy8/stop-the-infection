@@ -290,3 +290,6 @@ function animate() {
 
 init();
 animate();
+
+init();
+animate();
