@@ -1,6 +1,3 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.150.1';
-import { OrbitControls } from 'https://cdn.skypack.dev/three@0.150.1/examples/jsm/controls/OrbitControls.js';
-
 let scene, camera, renderer, controls;
 let nodes = [], edges = [], infected = new Set(), dead = new Set(), vaccinated = new Set();
 let nodeMeshes = new Map(), lineMeshes = [];
@@ -19,7 +16,7 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  controls = new OrbitControls(camera, renderer.domElement);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
   controls.enableZoom = true;
