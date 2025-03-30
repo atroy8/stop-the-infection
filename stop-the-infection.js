@@ -1,8 +1,8 @@
 // Stop the Infection Game with Difficulty Setting, Start/Restart Controls, 3D Rotation, and Report UI
 // Uses Three.js with OrbitControls for interaction
 
-import * as THREE from 'https://cdn.skypack.dev/three@0.150.1';
-import { OrbitControls } from 'https://cdn.skypack.dev/three@0.150.1/examples/jsm/controls/OrbitControls.js';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.175.0/build/three.module.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.175.0/examples/jsm/controls/OrbitControls.js';
 
 let scene, camera, renderer, controls;
 let nodes = [], edges = [], infected = new Set(), dead = new Set(), vaccinated = new Set();
