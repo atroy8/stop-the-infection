@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stop the Infection 3D</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: sans-serif;
+      background: #f9f9f9;
+    }
+    #status {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      z-index: 100;
+    }
+    #nextRoundButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      z-index: 100;
+    }
+    #controls {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+    #controls label, #controls select, #controls button {
+      margin-right: 6px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="status">Round: 1 | Vaccines Left: 3 | Infectiousness: R=1.20 Fatality=10%</div>
+  
+  <div id="controls">
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty">
+      <option value="easy">Easy</option>
+      <option value="normal" selected>Normal</option>
+      <option value="hard">Hard</option>
+    </select>
+    <button id="startGameButton">Start Game</button>
+    <button id="restartGameButton">Restart</button>
+  </div>
+
+  <button id="nextRoundButton">Next Round</button>
+
+  <script type="module" src="stop-the-infection.js"></script>
+</body>
+</html>
+
