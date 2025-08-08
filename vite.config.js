@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 // e.g., base: '/solve-the-outbreak/'
 export default defineConfig({
   plugins: [react()],
-  // base: '/<REPO_NAME>/',
+base: '/stop-the-infection/',
 })
